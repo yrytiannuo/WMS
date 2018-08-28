@@ -25,8 +25,34 @@
 
 接口文档
 ===
->用户接口
+>## 用户接口
+
 | 一个普通标题 | 一个普通标题 | 一个普通标题 |
 | ------ | ------ | ------ |
 | 短文本 | 中等文本 | 稍微长一点的文本 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
+
+
+页面加载
+===
+##### URL解析 -> DNS查询 -> 资源请求 -> 浏览器解析
+URL结构
+---
+协议+域名/端口+路径+参数+哈希
+
+DNS查询
+---
+浏览器 ----> DNS缓存+DNS服务器
+##### DNS优化
+dns-prefetch
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//cdn.bootcss.com">
+    <title></title>
+</head>
+<body></body>
+</html>
+```
