@@ -44,7 +44,7 @@ DNS查询
 ---
 浏览器 ----> DNS缓存+DNS服务器
 ##### DNS优化
-dns-prefetch
+dns-prefetch,即dns预获取是前端优化的一部分；一般来说，前端优化中与DNS有关的有两点：一个是减少DNS的请求次数，另一个就是进行DNS预获取。
 ```
 <!DOCTYPE html>
 <html>
@@ -56,3 +56,12 @@ dns-prefetch
 <body></body>
 </html>
 ```
+
+资源请求
+---
+浏览器 ----> 后端服务器
+
+浏览器解析
+---
+<img src="/img/bower.png" alt="图片名称" />
+
