@@ -65,3 +65,15 @@ dns-prefetch,即dns预获取是前端优化的一部分；一般来说，前端�
 ---
 <img src="/img/bower.png" alt="图片名称" />
 
+
+安装react
+===
+插件
+---
++ HtmlWebpackPlugin
++ babel-loader
++ css-loader、style-loader
++ sass-loader、node-sass
++ extract-text-webpack-plugin
++ url-loader
+
