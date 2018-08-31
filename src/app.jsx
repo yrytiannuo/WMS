@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'font-awesome/css/font-awesome.min.css';
-import './index.css';
-import './index.scss';
+import { BrowerRouter as Router, Switch, Redirect, Route} from 'react-router-dom'
+
+
+//页面
+import Home from 'page/home/index.jsx';
+
+class App extends React.Component{
+	render(){
+		return (
+			<Router>
+				<Home />
+			</Router>
+		)
+	}
+}
 
 ReactDOM.render(
-	<div>
-		<i className="fa fa-address-book"></i>
-		<h1>Hello, world!</h1>
-	</div>,
+	<App />,
 	document.getElementById('app')
 );

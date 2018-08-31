@@ -22,3 +22,7 @@ new Promise((resolve,reject)=>{
 });
 ```
 
+react声明周期
+---
+
+
