@@ -463,8 +463,8 @@ background: #17191B;
 }
  
 .navbar-side {
-	border:none;
-	background-color: transparent;
+    height: 100vh;
+    background-color: #32323a
 	
 }
 .top-navbar {
