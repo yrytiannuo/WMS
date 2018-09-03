@@ -343,31 +343,34 @@ max-width:170px;
 margin:0px;
 }
 .top-navbar .navbar-brand {
-color: #fff;
-width: 260px;
-text-align: left;
-height: 60px;
-font-size: 30px;
-font-weight: 700;
-text-transform: uppercase;
-line-height: 30px;
-background: #32323a;
+    color: #fff;
+    width: 260px;
+    text-align: left;
+    height: 60px;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 30px;
+    background: #32323a;
 }
 .navbar-brand b{
 color: #2DAFCB;
 }
 .top-navbar .nav > li {
-position: relative;
-display: inline-block;
-margin: 0px;
-padding: 0px;
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 10px;
 }
+.top-navbar .nav > li:hover > .dropdown-menu{
+    display: block;
+} 
 .top-navbar .nav > li > a {
-position: relative;
-display: block;
-padding: 20px;
-color: #FFFFFF;
-margin: 0px;
+    position: relative;
+    display: block;
+    padding: 20px;
+    color: #FFFFFF;
+    margin: 0px;
 }
 .top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {
 text-decoration: none;
@@ -471,12 +474,15 @@ background: #17191B;
 	
 }
 .top-navbar .nav > li > a > i {
-margin-right: 2px;
+    margin-right: 2px;
+}
+.top-navbar .nav > li > a > span{
+    color:#666;
+    margin-right:5px;
 }
 .top-navbar .navbar-brand:hover { 
-color: #2DAFCB;
-
-background-color: rgb(43, 46, 51);
+    color: #2DAFCB;
+    background-color: rgb(43, 46, 51);
 }
 .dropdown-user li {
 margin: 8px 0;

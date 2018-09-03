@@ -14,7 +14,8 @@ class App extends React.Component{
 				<Layout>
 					<Switch>
 					<Route exact path="/" component={Home}/>
-					<Redirect from="*" to="/"/>
+					<Route path="/product" component={Home}/>
+					<Route path="/prodect-categroy" component={Home}/>
 					</Switch>
 				</Layout>		
 		  	</BrowserRouter>
