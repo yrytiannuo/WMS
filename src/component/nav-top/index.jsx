@@ -1,20 +1,25 @@
 import React    from 'react';
 import { Link } from 'react-router-dom';
 
+//工具类
+import MUtil from 'util/mm.jsx';
+//数据类
+import User from 'service/user-service.jsx';
+
+const _mm = new MUtil();
+const _user = new User();
+
 class NavTop extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            username: _mm.getStorage('userInfo').username || ''
+        }
     }
     render(){
         return (
             <div className="navbar navbar-default top-navbar" role="navigation">
                 <div className="navbar-header">
-                    {/* <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                    </button> */}
                     <Link className="navbar-brand" to="/"><b>Noe</b>Knox</Link>
                 </div>
 
@@ -22,7 +27,11 @@ class NavTop extends React.Component{
                     <li className="dropdown">
                         <a className="dropdown-toggle" href="javascript:;">
                             <i className="fa fa-user fa-fw"></i>
-                            <span>欢迎，admin noe</span>
+                            {
+                                this.state.username
+                                ? <span>欢迎，{this.state.username}</span>
+                                : <span>欢迎您！</span>
+                            }
                             <i className="fa fa-caret-down"></i>
                         </a>
                         <ul className="dropdown-menu dropdown-user">
