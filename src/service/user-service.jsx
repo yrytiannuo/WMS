@@ -4,6 +4,7 @@ import MUtil from 'util/mm.jsx';
 const _mm = new MUtil();
 
 class User{
+    //登录
     login(loginInfo){
         return _mm.request({
             type: 'post',
@@ -31,6 +32,13 @@ class User{
             status: true,
             msg: '验证通过'
         }
+    }
+    //退出登录
+    logout(){
+        return _mm.request({
+            type: 'post',
+            url: '/user/logout.do'
+        });
     }
 }
 

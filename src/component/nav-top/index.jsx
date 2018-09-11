@@ -16,6 +16,15 @@ class NavTop extends React.Component{
             username: _mm.getStorage('userInfo').username || ''
         }
     }
+    //退出登录
+    onLogout(){
+        _user.logout().then(res => {
+            _mm.removeStorage('userInfo');
+            window.location.href = '/login';
+        },errMsg => {
+            _mm.errorTips(errMsg);
+        });
+    } 
     render(){
         return (
             <div className="navbar navbar-default top-navbar" role="navigation">
@@ -40,7 +49,7 @@ class NavTop extends React.Component{
                             <li><a href="#"><i className="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li className="divider"></li>
-                            <li><a href="#"><i className="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li  onClick={() => this.onLogout()}><a href="#"><i className="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
