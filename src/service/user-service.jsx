@@ -12,6 +12,8 @@ class User{
             data: loginInfo
         });
     }
+
+
     
     //检查数据是否合法
     checkLoginInfo(loginInfo){
