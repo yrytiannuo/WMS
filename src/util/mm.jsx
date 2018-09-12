@@ -57,6 +57,7 @@ class MUtil{
         }else{
             return '';
         }
+        
     }
     removeStorage(name){
         window.localStorage.removeItem(name);
