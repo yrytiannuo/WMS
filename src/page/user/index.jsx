@@ -15,7 +15,8 @@ class UserList extends React.Component{
     super(props);
     this.state = {
       list: [],
-      pageNum: 1
+      pageNum: 1,
+      firstLoading: true
     };
   }
   componentDidMount(){
@@ -23,22 +24,45 @@ class UserList extends React.Component{
   }
   loadUserList(){
     _user.getUserList(this.state.pageNum).then(res => {
-      this.setState(res);
-      console.log(res);
+      this.setState(res,() => {
+        this.setState({
+          firstLoading: false
+        });
+      });
     }, errMsg => {
+      this.setState = {
+        list: []
+      }
       _mm.errorTips(errMsg);
     });
   }
   //当页数变化的时候
   onPageNumChange(pageNum){
-    console.log(pageNum);
     this.setState({
-      pageNUm: pageNum
+      pageNum: pageNum
     }, () => {
       this.loadUserList();
     });
   }
   render(){
+    let listBody = this.state.list.map((user, index) => {
+      return (
+        <tr key={index}>
+          <th>{user.id}</th>
+          <th>{user.username}</th>
+          <th>{user.email}</th>
+          <th>{user.phone}</th>
+          <th>{new Date(user.createTime).toLocaleString()}</th>
+        </tr>
+      );
+    });
+    let listError = (
+      <tr>
+        <td colSpan="5" className="text-center">
+        {this.state.firstLoading ? '正在加载数据...' : '没有找到相应结果'}</td>
+      </tr>
+    );
+    let tableBody = this.state.list.length > 0 ? listBody : listError;
     return (
       <div id="page-wrapper">
         <PageTitle title="用户列表"/>
@@ -55,19 +79,7 @@ class UserList extends React.Component{
                 </tr>
               </thead>
               <tbody>
-                {
-                  this.state.list.map((user, index) => {
-                    return (
-                      <tr key={index}>
-                        <th>{user.id}</th>
-                        <th>{user.username}</th>
-                        <th>{user.email}</th>
-                        <th>{user.phone}</th>
-                        <th>{user.createTime}</th>
-                      </tr>
-                    );
-                  })
-                }       
+                {tableBody}       
               </tbody>
             </table>
           </div>
