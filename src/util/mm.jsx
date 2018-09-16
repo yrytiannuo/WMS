@@ -6,7 +6,7 @@ class MUtil{
                 url: param.url || '',
                 dataType: param.dataType || "json",
                 data: param.data || null,
-                success(res){
+                success: res => {
                     //数据请求成功
                     if(0 === res.status){
                         typeof resolve === 'function' && resolve(res.data, res.msg);
@@ -17,7 +17,7 @@ class MUtil{
                         typeof reject === 'function' && reject(res.msg || res.data);
                     }
                 },
-                error(err){
+                error: err => {
                     typeof reject === 'function' && reject(err.statusText);
                 }
             });
@@ -32,7 +32,7 @@ class MUtil{
         let queryString = window.location.search.split('?')[1] || '',
         reg = new RegExp("(^|&)"+ name + "=([^&]*)(&|$)"),
         result = queryString.match(reg);
-        return result ? decodeURLComponent(result[2]) : null;
+        return result ? decodeURIComponent(result[2]) : null;
     }
     //错误提示
     errorTips(errMsg){
