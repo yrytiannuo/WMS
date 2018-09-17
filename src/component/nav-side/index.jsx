@@ -23,7 +23,7 @@ class NavSide extends React.Component{
                                     <NavLink  to="/product" activeClassName="active-menu">商品管理</NavLink >
                                 </li>
                                 <li>
-                                    <NavLink  to="/product-categroy" activeClassName="active-menu">品类管理</NavLink >
+                                    <NavLink  to="/product-category" activeClassName="active-menu">品类管理</NavLink >
                                 </li>
                             </ul>
                         </li>
