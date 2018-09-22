@@ -46,7 +46,7 @@ class ProductList extends React.Component{
     this.setState({
       pageNum: pageNum
     }, () => {
-      this.loadUserList();
+      this.loadProductList();
     });
   }
   //改变状态
