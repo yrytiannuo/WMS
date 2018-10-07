@@ -11,13 +11,12 @@ class ListSearch extends React.Component{
   }
   onValueChange(e){
     let name = e.target.name,
-        value = e.target.value.trim();
+        value = e.target.value.trim(); 
     this.setState({
         [name]: [value]
     })
   }
   onSearch(){
-    console.log('1');
     this.props.onSearch(this.state.searchType,this.state.searchKeyword);
   }
   onSearchKeywordKeyup(e){
