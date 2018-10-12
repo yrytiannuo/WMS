@@ -1,11 +1,11 @@
 import React from 'react';
 import PageTitle from 'component/page-title/index.jsx';
-import Mutil from 'util/mm.jsx';
-import Product from 'service/Product-service.jsx';
+// import Mutil from 'util/mm.jsx';
+// import Product from 'service/Product-service.jsx';
 import CategorySelector from './category-selector.jsx';
 
-const _mm = new Mutil();
-const _product = new Product();
+// const _mm = new Mutil();
+// const _product = new Product();
 class ProductSave extends React.Component{
 	render(){
 		return (

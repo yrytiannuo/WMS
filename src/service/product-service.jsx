@@ -14,7 +14,6 @@ class Product{
         data.pageNum = listParam.pageNum;
         data[listParam.searchType] = listParam.keyword;
       }
-      console.log(data);
       return _mm.request({
         type: 'post',
         url: url,
@@ -26,6 +25,17 @@ class Product{
         type: 'post',
         url: '/manage/product/set_sale_status.do',
         data: productInfo
+      });
+    }
+
+    /*品类*/
+    getCategoryList(parentCategoryId){
+      return _mm.request({
+        type: 'post',
+        url: '/manage/category/get_category.do',
+        data: {
+          categoryId: parentCategoryId || 0
+        }
       });
     }
 }
