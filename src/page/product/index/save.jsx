@@ -4,6 +4,8 @@ import Mutil from 'util/mm.jsx';
 import Product from 'service/Product-service.jsx';
 import CategorySelector from './category-selector.jsx';
 
+import  FileUploader from 'util/file-uploader/index.jsx';
+
 const _mm = new Mutil();
 const _product = new Product();
 class ProductSave extends React.Component{
@@ -21,7 +23,7 @@ class ProductSave extends React.Component{
 		return (
 			<div id="page-wrapper">
 				<PageTitle title="添加商品"/>
-				<form className="form-horizontal">
+				<div className="form-horizontal">
 					<div className="form-group">
 						<label className="col-sm-2 control-label">商品名称</label>
 						<div className="col-md-5">
@@ -60,11 +62,17 @@ class ProductSave extends React.Component{
 						</div>
 					</div>
 					<div className="form-group">
+						<label className="col-sm-2 control-label">上传图片</label>
+						<div className="col-md-10">
+							<FileUploader />
+						</div>
+					</div>
+					<div className="form-group">
 						<div className="col-sm-offset-2 col-sm-10">
 							<button type="submit" className="btn btn-primary">提交</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		)
 	}
