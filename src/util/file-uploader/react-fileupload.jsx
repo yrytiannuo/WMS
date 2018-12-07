@@ -10,10 +10,10 @@
 
 /*eslint indent: 0 */
 import React from 'react';
-
 import PT from 'prop-types';
+
 const emptyFunction = function() {}
-/*当前IE上传组的id*/
+/*当前IE上传组的id*/  
 let currentIEID = 0
 /*存放当前IE上传组的可用情况*/
 const IEFormGroup = [true]
@@ -24,7 +24,7 @@ let currentXHRID = 0
 // const PT = React.PropTypes
 
 class FileUpload extends React.Component{
-    constructor(){
+    constructor(props){
       super(props);
       this.state = {
         chooseBtn: {},       //选择按钮。如果chooseAndUpload=true代表选择并上传。
@@ -532,15 +532,15 @@ class FileUpload extends React.Component{
         return navigatorIsAvailable ? navigator.userAgent : userAgentString;
     }
 
-    getInitialState() {
-        return {
-            chooseBtn: {},       //选择按钮。如果chooseAndUpload=true代表选择并上传。
-            uploadBtn: {},       //上传按钮。如果chooseAndUpload=true则无效。
-            before: [],      //存放props.children中位于chooseBtn前的元素
-            middle: [],      //存放props.children中位于chooseBtn后，uploadBtn前的元素
-            after: []        //存放props.children中位于uploadBtn后的元素,
-        }
-    }
+    // getInitialState() {
+    //     return {
+    //         chooseBtn: {},       //选择按钮。如果chooseAndUpload=true代表选择并上传。
+    //         uploadBtn: {},       //上传按钮。如果chooseAndUpload=true则无效。
+    //         before: [],      //存放props.children中位于chooseBtn前的元素
+    //         middle: [],      //存放props.children中位于chooseBtn后，uploadBtn前的元素
+    //         after: []        //存放props.children中位于uploadBtn后的元素,
+    //     }
+    // }
 
     componentWillMount() {
         this.userAgent = this.getUserAgent();
@@ -579,14 +579,14 @@ class FileUpload extends React.Component{
             render = (
                 <div className={this.props.className} style={this.props.style}>
                     {this.state.before}
-                    <div onClick={this.commonChooseFile}
+                    <div onClick={(e) => this.commonChooseFile(e)}
                         style={{overflow:'hidden',postion:'relative',display:this.wrapperDisplay}}
                     >
                         {this.state.chooseBtn}
                     </div>
                     {this.state.middle}
 
-                    <div onClick={this.commonUpload}
+                    <div onClick={(e) =>this.commonUpload(e)}
                         style={{
                             overflow: 'hidden',
                             postion: 'relative',
@@ -597,7 +597,7 @@ class FileUpload extends React.Component{
                     </div>
                     {this.state.after}
                     <input type="file" name="ajax_upload_file_input" ref="ajax_upload_file_input"
-                        style={{display:'none'}} onChange={this.commonChange}
+                        style={{display:'none'}} onChange={(e) => this.commonChange(e)}
                         {...restAttrs}
                     />
                 </div>
@@ -662,7 +662,7 @@ class FileUpload extends React.Component{
 
             const input =
                 <input type="file" name={`ajax_upload_hidden_input_${i}`} id={`ajax_upload_hidden_input_${i}`}
-                    ref={`ajax_upload_hidden_input_${i}`} onChange={this.IEChooseFile} onClick={this.IEBeforeChoose}
+                    ref={`ajax_upload_hidden_input_${i}`} onChange={(e) => this.IEChooseFile(e)} onClick={(e) =>this.IEBeforeChoose(e)}
                     style={style} {...restAttrs}
                 />
 
@@ -670,7 +670,7 @@ class FileUpload extends React.Component{
             formArr.push((
                 <form id={`ajax_upload_file_form_${i}`} method="post" target={`ajax_upload_file_frame_${i}`}
                     key={`ajax_upload_file_form_${i}`}
-                    encType="multipart/form-data" ref={`form_${i}`} onSubmit={this.IEUpload}
+                    encType="multipart/form-data" ref={`form_${i}`} onSubmit={(e) => this.IEUpload(e)}
                     style={{display:isShow? 'block':'none'}}
                 >
                     {this.state.before}
@@ -720,5 +720,44 @@ class FileUpload extends React.Component{
     }
 
 }
+
+FileUpload.propTypes = {
+
+    options: PT.shape({
+        /*basics*/
+        baseUrl: PT.string.isRequired,
+        param: PT.oneOfType([PT.object, PT.func]),
+        dataType: PT.string,
+        chooseAndUpload: PT.bool,
+        paramAddToField: PT.oneOfType([PT.object, PT.func]),
+        wrapperDisplay: PT.string,
+        timeout: PT.number,
+        accept: PT.string,
+        multiple: PT.bool,
+        numberLimit: PT.oneOfType([PT.number, PT.func]),
+        fileFieldName: PT.oneOfType([PT.string, PT.func]),
+        withCredentials: PT.bool,
+        requestHeaders: PT.object,
+        /*specials*/
+        tag: PT.string,
+        userAgent: PT.string,
+        disabledIEChoose: PT.oneOfType([PT.bool, PT.func]),
+        _withoutFileUpload: PT.bool,
+        filesToUpload: PT.arrayOf(PT.object),
+        textBeforeFiles: PT.bool,
+        /*funcs*/
+        beforeChoose: PT.func,
+        chooseFile: PT.func,
+        beforeUpload: PT.func,
+        doUpload: PT.func,
+        uploading: PT.func,
+        uploadSuccess: PT.func,
+        uploadError: PT.func,
+        uploadFail: PT.func,
+        onabort: PT.func
+    }).isRequired,
+    style: PT.object,
+    className: PT.string
+};
 
 export default FileUpload;

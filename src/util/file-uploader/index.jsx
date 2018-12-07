@@ -1,5 +1,5 @@
 import React from 'react';
-import FileUpload from './react-fileupload';
+import FileUpload from './react-fileupload.jsx';
 
 class FileUploader extends React.Component{
   render(){
@@ -7,6 +7,7 @@ class FileUploader extends React.Component{
     const options={
       baseUrl:'/manage/product/upload.do',
       fileFieldName: 'upload_file',
+      chooseAndUpload: true,
       dataType: 'json',
       uploadSuccess: (res) => {
         console.log(res);
@@ -19,8 +20,7 @@ class FileUploader extends React.Component{
     /*Set two dom with ref*/
     return (
       <FileUpload options={options}>
-        <button ref="chooseBtn">choose</button>
-        <button ref="uploadBtn">upload</button>
+        <button ref="chooseAndUpload">请选择图片</button>
       </FileUpload>
     )	        
   }
