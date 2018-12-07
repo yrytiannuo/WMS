@@ -5,6 +5,7 @@ import Product from 'service/Product-service.jsx';
 import CategorySelector from './category-selector.jsx';
 
 import  FileUploader from 'util/file-uploader/index.jsx';
+import './save.scss';
 
 const _mm = new Mutil();
 const _product = new Product();
@@ -13,11 +14,34 @@ class ProductSave extends React.Component{
 		super(props);
 		this.state = {
 			categoryId: 0,
-			parentCategoryId: 0
+			parentCategoryId: 0,
+			subImages: []
 		}
-	}
+	} 
+	//品类选择器变化
 	onCategoryChange(categoryId, parentCategoryId){
 		console.log(categoryId);
+	}
+	//上传图片成功
+	onUploadSuccess(res){
+		let subImages = this.state.subImages;
+		subImages.push(res);
+		this.setState({
+			subImages : subImages
+		});
+	}
+	//上传图片失败
+	onUploadError(err){
+		_mm.errorTips(error.message || "上传图片失败")
+	}
+	//删除图片
+	onImageDelete(e){
+		let index = parseInt(e.target.getAttribute('index')),
+				subImages = this.state.subImages;
+		subImages.splice(index,1);
+		this.setState({
+			subImages: subImages
+		})
 	}
 	render(){
 		return (
@@ -64,7 +88,20 @@ class ProductSave extends React.Component{
 					<div className="form-group">
 						<label className="col-sm-2 control-label">上传图片</label>
 						<div className="col-md-10">
-							<FileUploader />
+							{
+								this.state.subImages.length > 0 ? this.state.subImages.map(
+									(image, index) => (
+										<div className="img-con" key={index}>
+											<img src={image.url} />
+											<i className="fa fa-close" index={index} onClick={(e) => this.onImageDelete(e)}></i>
+										</div>
+									)
+								) :  (<div>请上传图片</div>)
+							}
+						</div>
+						<div className="col-md-10">
+							<FileUploader className="" onSuccess={(res) => this.onUploadSuccess(res)}
+																				 onError={(err) => this.onUploadError(err)}/>
 						</div>
 					</div>
 					<div className="form-group">

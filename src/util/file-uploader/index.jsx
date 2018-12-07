@@ -10,10 +10,10 @@ class FileUploader extends React.Component{
       chooseAndUpload: true,
       dataType: 'json',
       uploadSuccess: (res) => {
-        console.log(res);
+        this.props.onSuccess(res.data)
       },
       uploadError: (err) => {
-        console.log(err);
+        this.props.onError(err.message || '长传图片失败')
       }
     }
     /*Use FileUpload with options*/
